@@ -16,8 +16,8 @@
     "build": "browserify index.js > bundle.js"
   },
   "dependencies": {
-    "@samelie/dash-player-errortypes": "*",
-    "@samelie/dash-player-voutils": "*",
+    "@samelie/dash-player-errortypes": "git://github.com/samradical/dash-player-errortypes.git",
+    "@samelie/dash-player-voutils": "git://github.com/samradical/dash-player-voutils.git",
     "bluebird": "^3.4.6",
     "lodash": "^4.16.4",
     "signals": "^1.0.0",
