@@ -73,16 +73,15 @@ export default class YoutubeApi {
 					} else {
 						_self.socket.removeListener(_s, arguments[0].callee)
 						_items = [..._items, ...data.items]
-						if (data.nextPageToken) {
-							_loop(data.nextPageToken)
+						console.log(data.pageToken);
+						if (data.pageToken) {
+							_loop(data.pageToken)
 						} else {
 							data.items = _items
 							yes(data)
 						}
 					}
 				});
-
-				console.log(params);
 
 				this.socket.emit('rad:youtube:playlist:items', params)
 
