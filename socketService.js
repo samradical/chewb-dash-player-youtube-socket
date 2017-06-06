@@ -1,6 +1,6 @@
 import Q from 'bluebird';
 import Signals from 'signals';
-import { ERROR_TYPES } from '@samelie/dash-player-errortypes'
+import { ERROR_TYPES } from 'dash-player-errortypes'
 
 const YOUTUBE_DEFAULTS = {
 	maxResults: 50

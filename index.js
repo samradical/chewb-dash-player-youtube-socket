@@ -9,7 +9,7 @@ const DEFAULTS = {
 	quality: {
 		resolution: '360p'
 	},
-	videoOnly: true
+	itags:["136"]
 }
 
 
@@ -32,11 +32,11 @@ export default class DashPlayerYoutubeSocket extends SocketService {
 		this.youtube = new YotubeApi(this.socket)
 	}
 
-	getVideoInfo(params){
+	getVideoInfo(params) {
 		return this.youtube.video(params)
 	}
 
-	getManifest(type, videoId, uuid,options={} ) {
+	getManifest(type, videoId, uuid, options = {}) {
 		uuid = uuid || this.getUUID(type, videoId)
 		return new Q((yes, no) => {
 			let _existingManifest = Cache.getSidxManifest(uuid)
@@ -44,16 +44,19 @@ export default class DashPlayerYoutubeSocket extends SocketService {
 				yes(_existingManifest)
 			} else {
 				yes(this._getSidx(
-					videoId,
-					this._getSidxOptions(
-						type,
 						videoId,
-						this.quality
-					)
-				).then(manifest => {
-					Cache.setSidxManifest(uuid, manifest)
-					return manifest
-				}))
+						this._getSidxOptions(
+							type,
+							videoId,
+							options
+						)
+					).then(manifest => {
+						console.log("Got manifest");
+						console.log(manifest);
+						Cache.setSidxManifest(uuid, manifest)
+						return manifest
+					})
+				)
 			}
 		})
 	}

@@ -1,5 +1,5 @@
 const YoutubeSocket = require('./index')
-let VoUtils = require('@samelie/dash-player-voutils')
+let VoUtils = require('dash-player-voutils')
 let _socket = new YoutubeSocket.default()
 
 console.log("Fetching", 'audio', 'Mb3iPP-tHdA');
@@ -10,7 +10,7 @@ _socket.getManifest('audio', 'Mb3iPP-tHdA')
     let _vo = VoUtils.generateVideoVo(_uuid)
     VoUtils.addManifestToVideoVo(manifest, _vo)
     VoUtils.incrementRefIndex(_vo, 100)
-    
+
     let _mediaSourceVo = VoUtils.generateMediaSourceVo(_vo)
 
     return _socket.getIndexBuffer(
